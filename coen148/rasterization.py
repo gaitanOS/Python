@@ -1,13 +1,15 @@
 from PIL import Image
 
 radius = 100 #radius of circle
-quadrantx = [0,]
+quadrantx = 0
+quadranty = radius
+xpts = [] #array to hold x pts
+ypts = [] #array to hold y pts
+img = Image.new('RGB', (1000, 1000))
+pixels = img.load()
 d = (5/4) - radius
 x = 0
 y = radius
-
-xpts = [] #array to hold x pts
-ypts = [] #array to hold y pts
 xpts.append(x) #initial x value
 ypts.append(y) #initial y value
 
@@ -23,16 +25,22 @@ while x < y:
         y -= 1
         xpts.append(x)
         ypts.append(y)
-print("arrays filled\n")
-
-img = Image.new('RGB', (320, 240))
-
-pixels = img.load()
+#print("arrays filled by round " + str(i) + "\n")
 
 
 for i in range(len(xpts)):
-    pixels[xpts[i],ypts[i]] = (255,0,0)
-    
+    print("printing point: " + "(" + str(xpts[i]) + ", " + str(ypts[i])+ ")\n")
+    pixels[xpts[i] + 500 ,ypts[i] - 500] = (255,255,0)
+for i in range(len(xpts)):
+    print("printing reflection pts\n")
+    pixels[-xpts[i]+ 500,ypts[i]- 500] = (255,255,0)
+    pixels[xpts[i] + 500,-ypts[i] - 500] = (255,255,0)
+    pixels[-xpts[i] + 500 ,-ypts[i] - 500] = (255,255,0)
+    pixels[ypts[i] + 500 ,xpts[i] - 500] = (255,255,0)
+    pixels[-ypts[i] + 500,xpts[i] - 500] = (255,255,0)
+    pixels[ypts[i] + 500,-xpts[i] - 500] = (255,255,0)
+    pixels[-ypts[i] + 500 ,-xpts[i] - 500] = (255,255,0)
+        
 img.show()
         
     
