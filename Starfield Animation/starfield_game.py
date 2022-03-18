@@ -6,6 +6,7 @@ sh = 800
 
 NUMBER_OF_STARS = 50
 
+#score.txt file is used to keep track of high scoring when game program is ended
 f = open("score.txt", "r+")
 high_score = f.read()
 if len(high_score) == 0:
